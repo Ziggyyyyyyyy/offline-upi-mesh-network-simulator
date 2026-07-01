@@ -1,76 +1,94 @@
 # 🚀 Offline UPI Mesh Network Simulator
 
-A Spring Boot based simulation of an **Offline UPI Payment System** that enables payment requests to travel across nearby devices using a **Mesh Network** when internet connectivity is unavailable.
+An **Offline UPI Payment Simulator** built using **Spring Boot** that demonstrates how digital payments can be securely routed through a **Mesh Network** when the sender does not have internet connectivity.
 
-The project demonstrates how encrypted payment instructions can be propagated through a decentralized mesh, discovered by bridge devices with internet access, and securely settled on the backend. The system includes hybrid encryption, replay protection, idempotency guarantees, analytics, route tracking, and a real-time monitoring dashboard. Inspired by real-world offline payment and mesh networking concepts. :contentReference[oaicite:0]{index=0}
+Instead of sending a payment request directly to a server, the system forwards encrypted payment packets across nearby virtual devices until they reach a **Bridge Device** with internet access. The bridge then validates, decrypts, and settles the transaction while maintaining security through **Hybrid Encryption**, **Replay Protection**, and **Idempotent Processing**.
+
+This project is designed as a learning implementation of concepts used in **distributed systems, secure payment infrastructure, and mesh networking**.
 
 ---
 
-# 📌 Features
+# ✨ Features
 
-### Mesh Network Simulation
-- Virtual devices
+## 🌐 Mesh Network
 - Multi-hop packet routing
 - Gossip-based packet propagation
+- Virtual device simulation
 - Bridge node discovery
 - Device failure simulation
 - Multi-bridge support
+- Packet route tracking
 
-### Security
-- AES encryption for payment payloads
-- RSA encryption for AES key exchange
-- Hybrid cryptography
+## 🔒 Security
+- Hybrid AES + RSA Encryption
+- SHA-256 packet hashing
 - Replay attack protection
-- Packet integrity validation
-- Idempotent settlement
+- Idempotent packet processing
+- Secure payment instruction transmission
 
-### Payment Processing
+## 💳 Payment Processing
 - Offline payment instruction generation
-- Secure packet transmission
+- Mesh packet creation
 - Bridge ingestion pipeline
-- Transaction settlement engine
-- Account balance management
+- Payment settlement engine
+- Account balance updates
+- Transaction persistence
 
-### Monitoring Dashboard
-- Real-time analytics
-- Packet delivery statistics
-- Success rate tracking
+## 📊 Dashboard
+- Packet analytics
+- Success rate monitoring
 - Average hop count
-- Device monitoring
-- Packet route visualization
+- Device status
+- Route visualization
 - Transaction history
+- Account monitoring
+- Real-time charts using Chart.js
 
 ---
 
-# 🏗 Architecture
+# 🏗 System Architecture
 
 ```text
-TransferRequest
-        ↓
+Transfer Request
+        │
+        ▼
 InstructionFactory
-        ↓
+        │
+        ▼
 PaymentInstruction
-        ↓
-AES Encrypt Payload
-        ↓
-RSA Encrypt AES Key
-        ↓
+        │
+        ▼
+Hybrid Encryption
+(AES Payload + RSA Key)
+        │
+        ▼
 EncryptedPayload
-        ↓
+        │
+        ▼
 MeshPacket
-        ↓
+        │
+        ▼
 Mesh Network
-        ↓
+        │
+        ▼
 Bridge Device
-        ↓
+        │
+        ▼
 BridgeIngestionService
-        ↓
-Decrypt + Validate
-        ↓
+        │
+        ▼
+Replay Protection
+        │
+        ▼
+Idempotency Validation
+        │
+        ▼
 SettlementService
-        ↓
-Transaction Database
-        ↓
+        │
+        ▼
+H2 Database
+        │
+        ▼
 Dashboard
 ```
 
@@ -79,183 +97,221 @@ Dashboard
 # 🌐 Mesh Topology
 
 ```text
-Device-A -------- Device-B
-    |                 |
-    |                 |
-    |                 |
-Device-C -------- Device-D
-
-Bridge Devices:
-🌐 Device-B
-🌐 Device-D
+               Device-B 🌐
+              /        \
+             /          \
+        Device-A      Device-D 🌐
+             \          /
+              \        /
+               Device-C
 ```
+
+**🌐 = Bridge Device (Internet Available)**
 
 ---
 
-# 🔒 Security Flow
+# 🔄 Project Workflow
 
 ```text
-Payment Instruction
-        ↓
+User
+   │
+   ▼
+Transfer Request
+   │
+   ▼
+Payment Instruction Created
+   │
+   ▼
 AES Encryption
-        ↓
-AES Key Generated
-        ↓
-RSA Encrypt AES Key
-        ↓
-Hybrid Encrypted Packet
-        ↓
-Mesh Transmission
-        ↓
-Bridge Decryption
-        ↓
+   │
+   ▼
+RSA Encrypts AES Key
+   │
+   ▼
+Mesh Packet Created
+   │
+   ▼
+Packet Broadcast
+   │
+   ▼
+Nearby Devices
+   │
+   ▼
+Bridge Device Found
+   │
+   ▼
+Packet Validation
+   │
+   ▼
 Settlement
-```
-
----
-
-# 📊 Dashboard Features
-
-The dashboard provides:
-
-- Total Packets Injected
-- Delivered Packets
-- Dropped Packets
-- Success Rate
-- Average Hop Count
-- Device Status Monitoring
-- Account Balances
-- Transaction History
-- Route Tracking
-- Analytics Charts
-
-Dashboard URL:
-
-```text
-http://localhost:8080/dashboard
+   │
+   ▼
+Database Updated
+   │
+   ▼
+Dashboard Refreshed
 ```
 
 ---
 
 # 🛠 Tech Stack
 
-### Backend
-- Java 21
-- Spring Boot
-- Spring MVC
-- Spring Data JPA
-
-### Database
-- H2 Database
-
-### Frontend
-- Thymeleaf
-- Bootstrap 5
-- Chart.js
-
-### Security
-- AES
-- RSA
-- SHA-256
-
-### Build Tool
-- Maven
+| Category | Technology |
+|-----------|------------|
+| Language | Java 21 |
+| Framework | Spring Boot |
+| Database | H2 Database |
+| ORM | Spring Data JPA |
+| Frontend | Thymeleaf |
+| UI | Bootstrap 5 |
+| Charts | Chart.js |
+| Security | AES, RSA, SHA-256 |
+| Build Tool | Maven |
 
 ---
 
 # 📂 Project Structure
 
 ```text
-src/main/java/upimesh
-
-├── controller
-├── crypto
-├── dto
-├── mesh
-├── model
-├── repository
-├── service
-├── util
-
-src/main/resources
-
-├── static
-│   └── css
-├── templates
-│   └── dashboard.html
-└── application.properties
+src
+└── main
+    ├── java
+    │   └── upimesh
+    │       ├── controller
+    │       ├── crypto
+    │       ├── dto
+    │       ├── mesh
+    │       ├── model
+    │       ├── repository
+    │       ├── service
+    │       └── util
+    │
+    └── resources
+        ├── static
+        │   └── css
+        ├── templates
+        │   └── dashboard.html
+        └── application.properties
 ```
 
 ---
 
-# ▶️ Running Locally
+# 📸 Dashboard
 
-Clone repository:
+The dashboard provides a real-time overview of the system including:
 
-```bash
-git clone https://github.com/Ziggyyyyyyyy/offline-upi-mesh-network-simulator.git
+- 📦 Total Packets Injected
+- ✅ Delivered Packets
+- ❌ Dropped Packets
+- 📈 Success Rate
+- 🚀 Average Hop Count
+- 📡 Mesh Device Status
+- 💳 Account Balances
+- 📜 Transaction History
+- 🛰 Packet Route Tracking
+- 📊 Analytics Charts
+
+Dashboard URL
+
 ```
-
-Navigate to backend:
-
-```bash
-cd offline-upi-mesh-network-simulator/backend
-```
-
-Run application:
-
-```bash
-mvn spring-boot:run
-```
-
-Open dashboard:
-
-```text
 http://localhost:8080/dashboard
 ```
 
 ---
 
-# 🧪 Demonstrated Concepts
+# 🗄 Database Console
+
+H2 Console
+
+```
+http://localhost:8080/h2-console
+```
+
+Default Credentials
+
+| Property | Value |
+|----------|-------|
+| Driver | org.h2.Driver |
+| JDBC URL | jdbc:h2:mem:upimesh |
+| Username | sa |
+| Password | *(Leave Blank)* |
+
+---
+
+# ▶️ Running the Project
+
+Clone the repository
+
+```bash
+git clone https://github.com/Ziggyyyyyyyy/offline-upi-mesh-network-simulator.git
+```
+
+Navigate to the backend
+
+```bash
+cd offline-upi-mesh-network-simulator/backend
+```
+
+Run the application
+
+```bash
+mvn spring-boot:run
+```
+
+Open Dashboard
+
+```
+http://localhost:8080/dashboard
+```
+
+---
+
+# 🧪 What This Project Demonstrates
 
 - Distributed Systems
 - Mesh Networking
 - Store-and-Forward Routing
+- Secure Payment Processing
 - Hybrid Cryptography
-- Secure Payments
 - Replay Protection
-- Idempotency
+- Idempotent Transaction Handling
 - Multi-Hop Communication
-- Fault Tolerance
-- Network Analytics
+- Spring Boot Backend Development
+- Dashboard Monitoring & Analytics
 
 ---
 
-# 🚧 Future Improvements
+# 🚀 Future Enhancements
 
-- Real Bluetooth Communication
+- Bluetooth / Wi-Fi Direct Communication
 - PostgreSQL Integration
-- Redis-based Deduplication
-- WebSocket Live Updates
-- Mobile Application
-- NFC Support
+- Redis-based Duplicate Detection
 - Dynamic Routing Algorithms
+- WebSocket Live Dashboard
+- Mobile Client Application
+- NFC-based Offline Payments
 - Real Device Discovery
+
+---
+
+# 🎯 Learning Outcomes
+
+While building this project, I explored:
+
+- Spring Boot Architecture
+- Spring Data JPA
+- Hybrid Encryption (AES + RSA)
+- Backend Security Concepts
+- Mesh Networking Fundamentals
+- Distributed System Design
+- Transaction Management
+- Dashboard Development with Thymeleaf
+- Real-time Monitoring and Analytics
 
 ---
 
 # 👨‍💻 Author
 
-Developed as a learning project to explore:
+Developed by **Aditi Srivastava** as a personal project to explore **distributed systems, secure payment processing, backend engineering, and mesh networking using Spring Boot**.
 
-- Distributed Systems
-- Spring Boot
-- Cryptography
-- Mesh Networking
-- Offline Payment Infrastructure
-
----
-
-# ⭐ If you found this project useful
-
-Give the repository a star and feel free to contribute.
+If you have suggestions or feedback, feel free to open an issue or submit a pull request.
