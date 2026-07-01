@@ -225,16 +225,6 @@ H2 Console
 
 ```
 http://localhost:8080/h2-console
-```
-
-Default Credentials
-
-| Property | Value |
-|----------|-------|
-| Driver | org.h2.Driver |
-| JDBC URL | jdbc:h2:mem:upimesh |
-| Username | sa |
-| Password | *(Leave Blank)* |
 
 ---
 
@@ -309,9 +299,5 @@ While building this project, I explored:
 - Real-time Monitoring and Analytics
 
 ---
-
-# 👨‍💻 Author
-
-Developed by **Aditi Srivastava** as a personal project to explore **distributed systems, secure payment processing, backend engineering, and mesh networking using Spring Boot**.
 
 If you have suggestions or feedback, feel free to open an issue or submit a pull request.
