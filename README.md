@@ -1,16 +1,25 @@
 # 🚀 Offline UPI Mesh Network Simulator
 
-An **Offline UPI Payment Simulator** built using **Spring Boot** that demonstrates how digital payments can be securely routed through a **Mesh Network** when the sender does not have internet connectivity.
+A **Spring Boot-based backend implementation** that demonstrates how **encrypted UPI payment instructions** can be securely routed through a **Mesh Network** when the sender does not have internet connectivity.
 
-Instead of sending a payment request directly to a server, the system forwards encrypted payment packets across nearby virtual devices until they reach a **Bridge Device** with internet access. The bridge then validates, decrypts, and settles the transaction while maintaining security through **Hybrid Encryption**, **Replay Protection**, and **Idempotent Processing**.
+Instead of sending a payment request directly to a banking server, the system forwards encrypted payment packets across nearby **virtual mesh devices** until they reach a **Bridge Device** with internet access. The bridge validates, decrypts, and settles the transaction while ensuring security using **Hybrid Encryption**, **Replay Protection**, and **Idempotent Processing**.
 
-This project is designed as a learning implementation of concepts used in **distributed systems, secure payment infrastructure, and mesh networking**.
+This project focuses on exploring concepts used in **Distributed Systems**, **Secure Payment Infrastructure**, **Store-and-Forward Networking**, and **Backend System Design**.
+
+---
+
+# 🎥 Demo
+
+> 📹 Loom Demo: *(Add your Loom link here)*
+
+> 📂 GitHub Repository: https://github.com/Ziggyyyyyyyy/offline-upi-mesh-network-simulator
 
 ---
 
 # ✨ Features
 
 ## 🌐 Mesh Network
+
 - Multi-hop packet routing
 - Gossip-based packet propagation
 - Virtual device simulation
@@ -19,30 +28,39 @@ This project is designed as a learning implementation of concepts used in **dist
 - Multi-bridge support
 - Packet route tracking
 
+---
+
 ## 🔒 Security
+
 - Hybrid AES + RSA Encryption
-- SHA-256 packet hashing
-- Replay attack protection
-- Idempotent packet processing
-- Secure payment instruction transmission
+- SHA-256 Packet Hashing
+- Replay Attack Protection
+- Idempotent Packet Processing
+- Secure Payment Instruction Transmission
+
+---
 
 ## 💳 Payment Processing
-- Offline payment instruction generation
-- Mesh packet creation
-- Bridge ingestion pipeline
-- Payment settlement engine
-- Account balance updates
-- Transaction persistence
+
+- Offline Payment Instruction Generation
+- Mesh Packet Creation
+- Bridge Ingestion Pipeline
+- Payment Settlement Engine
+- Account Balance Updates
+- Transaction Persistence
+
+---
 
 ## 📊 Dashboard
-- Packet analytics
-- Success rate monitoring
-- Average hop count
-- Device status
-- Route visualization
-- Transaction history
-- Account monitoring
-- Real-time charts using Chart.js
+
+- Packet Analytics
+- Success Rate Monitoring
+- Average Hop Count
+- Device Status
+- Route Visualization
+- Transaction History
+- Account Monitoring
+- Real-time Charts using Chart.js
 
 ---
 
@@ -142,6 +160,10 @@ Bridge Device Found
    ▼
 Packet Validation
    │
+   ├── Replay Protection
+   │
+   ├── Idempotency Check
+   │
    ▼
 Settlement
    │
@@ -151,6 +173,20 @@ Database Updated
    ▼
 Dashboard Refreshed
 ```
+
+---
+
+# 🏛 Design Concepts
+
+- Layered Spring Boot Architecture
+- Factory Pattern
+- Dependency Injection
+- Store-and-Forward Routing
+- Hybrid Cryptography
+- Replay Protection
+- Idempotent Processing
+- Mesh Routing
+- Real-time Monitoring Dashboard
 
 ---
 
@@ -196,9 +232,22 @@ src
 
 ---
 
+# 🔗 REST APIs
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/api/hybrid/send` | Inject encrypted payment into mesh |
+| POST | `/api/mesh/gossip` | Execute one gossip propagation round |
+| GET | `/dashboard` | Open monitoring dashboard |
+| GET | `/api/accounts` | View account balances |
+| GET | `/api/transactions` | View transaction history |
+| GET | `/api/analytics/mesh` | Mesh analytics |
+
+---
+
 # 📸 Dashboard
 
-The dashboard provides a real-time overview of the system including:
+The dashboard provides a real-time overview of the simulator including:
 
 - 📦 Total Packets Injected
 - ✅ Delivered Packets
@@ -225,6 +274,7 @@ H2 Console
 
 ```
 http://localhost:8080/h2-console
+```
 
 ---
 
@@ -256,6 +306,27 @@ http://localhost:8080/dashboard
 
 ---
 
+# 📌 Current Scope
+
+This project is a **backend simulation** of an offline UPI mesh payment architecture.
+
+The current implementation focuses on validating the backend workflow rather than real device communication.
+
+Current implementation includes:
+
+- Virtual mesh devices
+- In-memory packet propagation
+- Simulated bridge discovery
+- Hybrid encryption
+- Replay protection
+- Idempotent settlement
+- Analytics dashboard
+- Route visualization
+
+The communication layer can later be replaced with **Bluetooth**, **Wi-Fi Direct**, or **Google Nearby Connections** without changing the core backend architecture.
+
+---
+
 # 🧪 What This Project Demonstrates
 
 - Distributed Systems
@@ -274,13 +345,20 @@ http://localhost:8080/dashboard
 # 🚀 Future Enhancements
 
 - Bluetooth / Wi-Fi Direct Communication
+- Google Nearby Connections API
+- Android Mobile Client
+- Automatic Internet Detection
+- Dynamic Bridge Election
+- ACK-based Packet Cleanup
+- Configurable Routing Algorithms
 - PostgreSQL Integration
 - Redis-based Duplicate Detection
-- Dynamic Routing Algorithms
+- Kafka/RabbitMQ Event Processing
+- JWT Authentication
+- Docker Deployment
 - WebSocket Live Dashboard
-- Mobile Client Application
-- NFC-based Offline Payments
-- Real Device Discovery
+- Prometheus + Grafana Monitoring
+- Unit & Integration Testing (JUnit + Mockito)
 
 ---
 
@@ -292,12 +370,21 @@ While building this project, I explored:
 - Spring Data JPA
 - Hybrid Encryption (AES + RSA)
 - Backend Security Concepts
-- Mesh Networking Fundamentals
 - Distributed System Design
+- Mesh Networking Fundamentals
 - Transaction Management
-- Dashboard Development with Thymeleaf
-- Real-time Monitoring and Analytics
+- Dashboard Development using Thymeleaf
+- Real-time Monitoring & Analytics
+- Modular Backend Architecture
 
 ---
 
-If you have suggestions or feedback, feel free to open an issue or submit a pull request.
+# 🤝 Contributions
+
+Suggestions, improvements, and feedback are always welcome.
+
+Feel free to open an Issue or submit a Pull Request.
+
+---
+
+# ⭐ If you found this project interesting, consider giving it a star!
