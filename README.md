@@ -10,7 +10,7 @@ This project focuses on exploring concepts used in **Distributed Systems**, **Se
 
 # 🎥 Demo
 
-> 📹 Loom Demo: *(Add your Loom link here)*
+> 📹 Loom Demo: *(https://www.loom.com/share/2b4fef15b5ae47d08c3f4f26d6c5c253)*
 
 > 📂 GitHub Repository: https://github.com/Ziggyyyyyyyy/offline-upi-mesh-network-simulator
 
